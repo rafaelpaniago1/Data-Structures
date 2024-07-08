@@ -1,21 +1,17 @@
-#ifndef GRAPH_H
-#define GRAPH_H
-#include "TipoNo.hpp"
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
+
 #include <iostream>
-#include <list>
-#define MAXTAM 10000
 
-class GraphAdjMatrix{
+class GraphAdjMatrix {
+public:
+    GraphAdjMatrix(int v, int a);
+    ~GraphAdjMatrix();
+    int* CheckNeigh(int vertex);
 
-    public:
-
-        GraphAdjMatrix(int v,int a);
-        int* CheckNeigh(int vertex);
-
-    private:
-
-        int** matrix;
-        int vertices;
+private:
+    int vertices;
+    int** matrix;
 };
 
 #endif
