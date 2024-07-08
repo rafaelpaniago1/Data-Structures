@@ -3,6 +3,7 @@
 #include "TipoNo.hpp"
 #include <iostream>
 #include <list>
+#define MAXTAM 10000
 
 class GraphAdjMatrix{
 
