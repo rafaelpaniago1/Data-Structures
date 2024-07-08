@@ -91,3 +91,21 @@ void BinaryTree::PorNivel(){
         }
     }
 }
+
+void BinaryTree::Limpa(){
+
+    ApagaRecursivo(raiz);
+    raiz = nullptr;
+
+}
+
+void BinaryTree::ApagaRecursivo(TipoNo* p){
+
+    if(p!=nullptr){
+
+        ApagaRecursivo(p->dir);
+        ApagaRecursivo(p->esq);
+        delete p;
+
+    }
+}

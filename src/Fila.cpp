@@ -52,25 +52,30 @@ void Fila::Enfileira(TipoNo* novo) {
         throw "O nó fornecido é nulo!";
     }
 
-    if (tamanho == 0) {
+    if (Vazia()) {
         primeiro = novo;
     } else {
         ultimo->dir = novo;
     }
 
     ultimo = novo;
+    novo->dir = nullptr;
     tamanho++;
 }
 
 TipoNo* Fila::Desenfileira() {
-    TipoNo *p;
     
-    if (tamanho == 0)
+    if (Vazia())
         throw "Fila está vazia!";
 
-    p = primeiro;
+    TipoNo *p = primeiro;
     primeiro = primeiro->dir;
     tamanho--;
+
+    if(Vazia()){
+        ultimo = nullptr;
+    }
+
     return p;
 }
 
