@@ -20,7 +20,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCLUDEDIR)/%.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Regras para arquivos sem dependências .hpp correspondentes
-$(BINDIR)/main.o: $(SRCDIR)/main.cpp $(INCLUDEDIR)/binary_tree.hpp $(INCLUDEDIR)/TipoItem.hpp $(INCLUDEDIR)/TipoNo.hpp $(INCLUDEDIR)/Fila.hpp
+$(BINDIR)/main.o: $(SRCDIR)/main.cpp $(INCLUDEDIR)/binary_tree.hpp $(INCLUDEDIR)/TipoItem.hpp $(INCLUDEDIR)/TipoNo.hpp $(INCLUDEDIR)/Fila.hpp $(INCLUDEDIR)/graph.hpp $(INCLUDEDIR)/heap.hpp
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.cpp -o $(BINDIR)/main.o
 
 $(BINDIR)/binary_tree.o: $(SRCDIR)/binary_tree.cpp $(INCLUDEDIR)/binary_tree.hpp $(INCLUDEDIR)/TipoNo.hpp
@@ -34,6 +34,12 @@ $(BINDIR)/TipoNo.o: $(SRCDIR)/TipoNo.cpp $(INCLUDEDIR)/TipoNo.hpp
 
 $(BINDIR)/Fila.o: $(SRCDIR)/Fila.cpp $(INCLUDEDIR)/Fila.hpp
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/Fila.cpp -o $(BINDIR)/Fila.o
+
+$(BINDIR)/graph.o: $(SRCDIR)/graph.cpp $(INCLUDEDIR)/graph.hpp
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/graph.cpp -o $(BINDIR)/graph.o
+
+$(BINDIR)/heap.o: $(SRCDIR)/heap.cpp $(INCLUDEDIR)/heap.hpp
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/heap.cpp -o $(BINDIR)/heap.o
 
 # Regra de limpeza
 clean:
