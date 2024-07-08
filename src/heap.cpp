@@ -1,61 +1,58 @@
 #include "heap.hpp"
 
-TipoNo* Heap::GetRaiz(){
+void Heap::Insert(int n){
 
-    return raiz;
-
-}
-
-void Heap::Insere(TipoItem item){
-
-    InsereRecursivo(raiz,item);
-
-}
-
-void Heap::Limpa(){
-
-    ApagaRecursivo(raiz);
-
-}
-
-Heap::~Heap(){
-
-    Limpa();
-
-}
-
-void Heap::ApagaRecursivo(TipoNo* &p){
-
-    if(p!=nullptr){
-
-        ApagaRecursivo(p->dir);
-        ApagaRecursivo(p->esq);
-        delete p;
+    heap[tamanho] = n;
+    int i = tamanho;
+    tamanho++;
+    while(GetAncestral(i) >= 0 && heap[GetAncestral(i)] < heap[i]){
+        
+        swap(heap,i,GetAncestral(i));
+        i = GetAncestral(i);
 
     }
-
 }
 
-TipoNo* Heap::Remove(TipoItem item){
+int Heap::Remove(){
 
-    return RemoveRecursivo(raiz,item);
+    int x = heap[0];
+    heap[0] = heap[tamanho - 1];
+    tamanho --;
+    int temp = 0;
+    while(heap[temp] < heap[GetSucDir(temp)] || heap[temp] < heap[GetSucEsq(temp)]){
 
+        int i = heap[GetSucDir(temp)];
+        if (i < heap[GetSucEsq(temp)]) i = GetSucEsq(temp);
+        swap(heap, heap[temp], heap[i]);
+        temp = i;
+
+    }
+    return x;
 }
 
 Heap::Heap(){
 
-    raiz = nullptr;
+    for(int i =0;i<MAX;i++){
+
+        heap[i] = -1;
+
+    }
+}
+
+int Heap::GetAncestral(int i){
+
+    return (i-1)/2;
+   
+}
+
+int Heap::GetSucDir(int i){
+    
+    return 2*i + 2;
 
 }
 
-void Heap::InsereRecursivo(TipoNo* &p, TipoItem item){
-
-
-
-}
-
-TipoNo* RemoveRecursivo(TipoNo* &p, TipoItem item){
-
-
+int Heap::GetSucEsq(int i){
+    
+    return 2*i + 1;
 
 }
